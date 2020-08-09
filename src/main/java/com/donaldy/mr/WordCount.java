@@ -1,4 +1,4 @@
-package com.donaldy.mapreduce;
+package com.donaldy.mr;
 
 import java.io.IOException;
 import java.util.StringTokenizer;

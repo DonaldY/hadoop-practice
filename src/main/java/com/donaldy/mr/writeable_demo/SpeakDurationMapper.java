@@ -1,4 +1,4 @@
-package com.donaldy.mapreduce.writeable_demo;
+package com.donaldy.mr.writeable_demo;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;

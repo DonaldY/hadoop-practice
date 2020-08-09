@@ -1,4 +1,4 @@
-package com.donaldy.mapreduce.demo;
+package com.donaldy.mr.demo;
 
 
 import java.io.IOException;
