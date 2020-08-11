@@ -20,10 +20,10 @@ public class CustomOutputFormat extends FileOutputFormat<Text, NullWritable> {
     public RecordWriter<Text, NullWritable> getRecordWriter(TaskAttemptContext context)
             throws IOException, InterruptedException {
 
-        //获取文文件系统对象
+        //获取文件系统对象
         final FileSystem fs = FileSystem.get(context.getConfiguration());
 
-        //指定输出数据的文文件
+        //指定输出数据的文件
         final Path lagouPath = new Path("e:/lagou.log");
 
         final Path otherLog = new Path("e:/other.log");
