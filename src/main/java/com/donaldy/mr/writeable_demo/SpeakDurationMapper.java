@@ -30,7 +30,7 @@ public class SpeakDurationMapper extends Mapper<LongWritable, Text, Text, SpeakB
         // 取出设备id
         String deviceId = fields[1];
 
-        //取出自自有和第三方方时⻓长数据
+        //取出自有和第三方时长数据
         long selfDuration = Long.parseLong(fields[fields.length - 3]);
         long thirdPartDuration = Long.parseLong(fields[fields.length - 2]);
         k.set(deviceId);

@@ -15,17 +15,17 @@ public class SpeakerDriver {
     public static void main(String[] args) throws
             IllegalArgumentException, IOException, ClassNotFoundException,
             InterruptedException {
-        // 输入入输出路路径需要根据自自己己电脑上实际的输入入输出路路径设置
+        // 输入输出路径需要根据自己电脑上实际的输入输出路径设置
         args = new String[] { "e:/input/input", "e:/output1" };
 
-        // 1. 获取配置信息,或者job对象实例例
+        // 1. 获取配置信息,或者job对象实例
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
 
-        // 6. 指定本程序的jar包所在的本地路路径
+        // 6. 指定本程序的jar包所在的本地路径
         job.setJarByClass(SpeakerDriver.class);
 
-        // 2. 指定本业务job要使用用的mapper/Reducer业务类
+        // 2. 指定本业务job要使用的mapper/Reducer业务类
         job.setMapperClass(SpeakDurationMapper.class);
         job.setReducerClass(SpeakDurationReducer.class);
 
@@ -37,11 +37,11 @@ public class SpeakerDriver {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(SpeakBean.class);
 
-        // 5. 指定job的输入入原始文文件所在目目录
+        // 5. 指定job的输入原始文件所在目录
         FileInputFormat.setInputPaths(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        // 7. 将job中配置的相关参数,以及job所用用的java类所在的jar包, 提交给yarn去运行
+        // 7. 将job中配置的相关参数,以及job所用的java类所在的jar包, 提交给yarn去运行
         boolean result = job.waitForCompletion(true);
         System.exit(result ? 0 : 1);
     }
