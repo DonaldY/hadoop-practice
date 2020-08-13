@@ -33,13 +33,16 @@ public class WordcountDriver {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
 
-        // 5 设置最终输出kv类型
+        // 5. 设置最终输出kv类型
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        // 6. 设置输入入和输出路路径
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        // 5.1. 使用 combiner
+        job.setCombinerClass(WordcountCombiner.class);
+
+        // 6. 设置输入和输出路路径
+        FileInputFormat.setInputPaths(job, new Path(""));
+        FileOutputFormat.setOutputPath(job, new Path(""));
 
         // 7. 提交
         boolean result = job.waitForCompletion(true);
