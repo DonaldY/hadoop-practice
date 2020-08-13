@@ -1,4 +1,4 @@
-package com.donaldy.mr.demo;
+package com.donaldy.mr.wordcount;
 
 
 import java.io.IOException;
