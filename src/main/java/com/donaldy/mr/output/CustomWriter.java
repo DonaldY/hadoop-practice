@@ -24,8 +24,8 @@ public class CustomWriter extends RecordWriter<Text, NullWritable> {
     @Override
     public void write(Text key, NullWritable value) throws IOException, InterruptedException {
 
-        // 判断是否包含“lagou”输出到不不同文文件
-        if (key.toString().contains("lagou")) {
+        // 判断是否包含“haha”输出到不同文件
+        if (key.toString().contains("haha")) {
             lagouOut.write(key.toString().getBytes());
             lagouOut.write("\r\n".getBytes());
 

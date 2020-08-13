@@ -35,12 +35,12 @@ public class OutputDriver {
 
         job.setOutputFormatClass(CustomOutputFormat.class);
 
-        FileInputFormat.setInputPaths(job, new Path("e:/click_log.data"));
+        FileInputFormat.setInputPaths(job, new Path(""));
 
         // outputformat继承自fileoutputformat 而fileoutputformat要输出一个
         // _SUCCESS文件,所以,在这还得指定一个输出目录
 
-        FileOutputFormat.setOutputPath(job, new Path("e:/click_log/output"));
+        FileOutputFormat.setOutputPath(job, new Path(""));
 
         final boolean flag = job.waitForCompletion(true);
 

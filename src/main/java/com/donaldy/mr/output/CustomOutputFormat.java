@@ -24,12 +24,12 @@ public class CustomOutputFormat extends FileOutputFormat<Text, NullWritable> {
         final FileSystem fs = FileSystem.get(context.getConfiguration());
 
         //指定输出数据的文件
-        final Path lagouPath = new Path("e:/lagou.log");
+        final Path filePath = new Path("/");
 
-        final Path otherLog = new Path("e:/other.log");
+        final Path otherLog = new Path("");
 
         //获取输出流
-        final FSDataOutputStream lagouOut = fs.create(lagouPath);
+        final FSDataOutputStream lagouOut = fs.create(filePath);
         final FSDataOutputStream otherOut = fs.create(otherLog);
 
         return new CustomWriter(lagouOut, otherOut);
