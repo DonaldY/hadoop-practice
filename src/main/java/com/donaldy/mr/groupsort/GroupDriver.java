@@ -27,7 +27,7 @@ public class GroupDriver {
         7. 指定job输出结果路径
         8. 提交作业
          */
-//        1. 获取配置文件对象，获取job对象实例
+        // 1. 获取配置文件对象，获取job对象实例
         final Configuration conf = new Configuration();
 
         final Job job = Job.getInstance(conf, "GroupDriver");
