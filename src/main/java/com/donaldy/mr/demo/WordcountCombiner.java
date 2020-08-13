@@ -1,15 +1,15 @@
 package com.donaldy.mr.demo;
 
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-import javax.xml.soap.Text;
 import java.io.IOException;
 /**
  * @author donald
  * @date 2020/08/13
  */
 // combiner 组件的输入和输出类型与 map() 方法保持一致
-public class WordcountCombiner extends Reducer<Text, IntWritable,Text,IntWritable> {
+public class WordcountCombiner extends Reducer<Text, IntWritable, Text, IntWritable> {
 
     IntWritable total = new IntWritable();
 
@@ -17,7 +17,7 @@ public class WordcountCombiner extends Reducer<Text, IntWritable,Text,IntWritabl
     protected void reduce(Text key, Iterable<IntWritable> values, Context
             context) throws IOException, InterruptedException {
 
-        // 进行局部汇总，逻辑是
+        // 进行局部汇总，逻辑是与reduce方法保持一致
 
         // 2. 遍历key对应的values, 然后累加结果
         int sum = 0;
