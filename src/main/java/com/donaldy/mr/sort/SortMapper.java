@@ -6,7 +6,6 @@ import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-import java.awt.image.BandCombineOp;
 import java.io.IOException;
 
 
@@ -20,7 +19,7 @@ public class SortMapper extends Mapper<LongWritable, Text, SpeakBean, NullWritab
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         //1 读取一行文本，转为字符串，切分
-        final String[] fields = value.toString().split("\t");
+        final String[] fields = value.toString().split(" ");
         //2 解析出各个字段封装成SpeakBean对象
         bean.setDeviceId(fields[0]);
         bean.setSelfDrutation(Long.parseLong(fields[1]));

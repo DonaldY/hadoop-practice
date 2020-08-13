@@ -14,15 +14,15 @@ import java.io.IOException;
  */
 public class SortDriver {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-         /*
-        1. 获取配置文件对象，获取job对象实例
-        2. 指定程序jar的本地路径
-        3. 指定Mapper/Reducer类
-        4. 指定Mapper输出的kv数据类型
-        5. 指定最终输出的kv数据类型
-        6. 指定job处理的原始数据路径
-        7. 指定job输出结果路径
-        8. 提交作业
+        /**
+         * 1. 获取配置文件对象，获取job对象实例
+         * 2. 指定程序jar的本地路径
+         * 3. 指定Mapper/Reducer类
+         * 4. 指定Mapper输出的kv数据类型
+         * 5. 指定最终输出的kv数据类型
+         * 6. 指定job处理的原始数据路径
+         * 7. 指定job输出结果路径
+         * 8. 提交作业
          */
         // 1. 获取配置文件对象，获取job对象实例
         final Configuration conf = new Configuration();
@@ -45,9 +45,9 @@ public class SortDriver {
         // 6. 指定job处理的原始数据路径
         //import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
         //import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-        FileInputFormat.setInputPaths(job, new Path("E:\\speak\\out")); //指定读取数据的原始路径
+        FileInputFormat.setInputPaths(job, new Path("/home/donald/Documents/demo/sort.txt")); //指定读取数据的原始路径
         // 7. 指定job输出结果路径
-        FileOutputFormat.setOutputPath(job, new Path("e:\\speak\\sortout")); //指定结果数据输出路径
+        FileOutputFormat.setOutputPath(job, new Path("/home/donald/Documents/demo/output/sort")); //指定结果数据输出路径
         // 8. 提交作业
         final boolean flag = job.waitForCompletion(true);
 
