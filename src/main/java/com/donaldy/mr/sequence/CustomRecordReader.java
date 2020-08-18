@@ -29,7 +29,7 @@ public class CustomRecordReader extends RecordReader<Text, BytesWritable> {
     private Text k = new Text();
 
     @Override
-    public void initialize(InputSplit split, TaskAttemptContext context) throws IOException, InterruptedException {
+    public void initialize(InputSplit split, TaskAttemptContext context) {
 
         // 获取到文件切片以及配置文件对象
         this.split = (FileSplit) split;
@@ -37,7 +37,7 @@ public class CustomRecordReader extends RecordReader<Text, BytesWritable> {
     }
 
     @Override
-    public boolean nextKeyValue() throws IOException, InterruptedException {
+    public boolean nextKeyValue() {
         if (isProgress) {
 
             // 1. 定义缓存区
@@ -51,11 +51,11 @@ public class CustomRecordReader extends RecordReader<Text, BytesWritable> {
                 fs = path.getFileSystem(configuration);
                 // 3. 读取数据
                 fis = fs.open(path);
-                // 4. 读取文文件内容
+                // 4. 读取文件内容
                 IOUtils.readFully(fis, contents, 0, contents.length);
-                // 5. 输出文文件内容
+                // 5. 输出文件内容
                 value.set(contents, 0, contents.length);
-                // 6. 获取文文件路路径及名称
+                // 6. 获取文件路径及名称
                 String name = split.getPath().toString();
                 // 7. 设置输出的key值
                 k.set(name);
@@ -71,21 +71,21 @@ public class CustomRecordReader extends RecordReader<Text, BytesWritable> {
     }
 
     @Override
-    public Text getCurrentKey() throws IOException, InterruptedException {
+    public Text getCurrentKey() {
         return k;
     }
 
     @Override
-    public BytesWritable getCurrentValue() throws IOException, InterruptedException {
+    public BytesWritable getCurrentValue() {
         return value;
     }
 
     @Override
-    public float getProgress() throws IOException, InterruptedException {
+    public float getProgress() {
         return 0;
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
     }
 }
