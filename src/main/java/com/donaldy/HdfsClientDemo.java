@@ -21,10 +21,10 @@ public class HdfsClientDemo {
     @Test
     public void testMkdirs() throws URISyntaxException, IOException, InterruptedException {
 
-        // 1 获取文文件系统
+        // 1 获取文件系统
         Configuration configuration = new Configuration();
 
-        // 配置在集群上运行行行
+        // 配置在集群上运行
         // configuration.set("fs.defaultFS", "hdfs://linux121:9000");
         // FileSystem fs = FileSystem.get(configuration);
         FileSystem fs = FileSystem.get(new URI("hdfs://linux121:9000"), configuration, "root");
@@ -55,15 +55,15 @@ public class HdfsClientDemo {
     @Test
     public void testCopyToLocalFile() throws IOException, InterruptedException, URISyntaxException{
 
-        // 1 获取文文件系统
+        // 1 获取文件系统
         Configuration configuration = new Configuration();
 
         FileSystem fs = FileSystem.get(new URI("hdfs://linux121:9000"), configuration, "root");
 
-        // 2 执行行行下载操作
-        // boolean delSrc 指是否将原文文件删除
-        // Path src 指要下载的文文件路路径
-        // Path dst 指将文文件下载到的路路径
+        // 2 执行下载操作
+        // boolean delSrc 指是否将原文件删除
+        // Path src 指要下载的文件路路径
+        // Path dst 指将文件下载到的路路径
         // boolean useRawLocalFileSystem 是否开启文文件校验
         fs.copyToLocalFile(false, new Path("/donald.txt"),
                 new Path("/home/donald/donald_copy.txt"), true);
@@ -75,12 +75,12 @@ public class HdfsClientDemo {
     @Test
     public void testDelete() throws IOException, InterruptedException, URISyntaxException{
 
-        // 1 获取文文件系统
+        // 1 获取文件系统
         Configuration configuration = new Configuration();
         FileSystem fs = FileSystem.get(new URI("hdfs://linux121:9000"),
                 configuration, "root");
 
-        // 2 执行行行删除, 是否递归删除
+        // 2 执行删除, 是否递归删除
         fs.delete(new Path("/test"), true);
 
         // 3 关闭资源
@@ -90,12 +90,12 @@ public class HdfsClientDemo {
     @Test
     public void testListFiles() throws IOException, InterruptedException, URISyntaxException{
 
-        // 1获取文文件系统
+        // 1获取文件系统
         Configuration configuration = new Configuration();
         FileSystem fs = FileSystem.get(new URI("hdfs://linux121:9000"),
                 configuration, "root");
 
-        // 2 获取文文件详情
+        // 2 获取文件详情
         RemoteIterator<LocatedFileStatus> listFiles = fs.listFiles(new Path("/"),
                 true);
 
@@ -200,7 +200,7 @@ public class HdfsClientDemo {
         FileSystem fs = FileSystem.get(new URI("hdfs://linux121:9000"),
                 configuration, "root");
 
-        // 2. 打开输入入流,读取数据输出到控制台
+        // 2. 打开输入流,读取数据输出到控制台
         FSDataInputStream in = null;
 
         try{
