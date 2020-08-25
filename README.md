@@ -11,3 +11,7 @@
 `hive` 包下：
 - `udf`： 用户自定义函数
 - `homeword`: 一些 `SQL` 习题
+
+
+`impala`包下：
+- `demo`： 实验包
