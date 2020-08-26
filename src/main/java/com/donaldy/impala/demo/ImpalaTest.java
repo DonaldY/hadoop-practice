@@ -1,4 +1,4 @@
-package com.donaldy.impala;
+package com.donaldy.impala.demo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
