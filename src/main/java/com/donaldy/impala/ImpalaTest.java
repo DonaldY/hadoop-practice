@@ -14,7 +14,7 @@ public class ImpalaTest {
 
         // 定义连接impala的驱动和连接url
         String driver = "org.apache.hive.jdbc.HiveDriver";
-        String driverUrl = "jdbc:hive2://172.16.64.122:21050/default;auth=noSasl";
+        String driverUrl = "jdbc:hive2://172.16.64.122:21050/mydb;auth=noSasl";
 
         // 查询的sql语句
         String querySql = "select * from t1";
