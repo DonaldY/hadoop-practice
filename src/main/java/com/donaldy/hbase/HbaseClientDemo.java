@@ -4,6 +4,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -88,7 +89,7 @@ public class HbaseClientDemo {
     public void deleteData() throws IOException {
 
         // 需要获取一个table对象
-        final Table worker = conn.getTable(TableName.valueOf("worker"));
+        final Table worker = conn.getTable(TableName.valueOf("teacher"));
 
         // 准备delete对象
         final Delete delete = new Delete(Bytes.toBytes("110"));
@@ -182,6 +183,7 @@ public class HbaseClientDemo {
         teacher.close();
     }
 
+    @After
     public void destroy(){
 
         if(admin != null){
