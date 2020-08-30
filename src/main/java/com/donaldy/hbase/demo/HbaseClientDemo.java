@@ -1,4 +1,4 @@
-package com.donaldy.hbase;
+package com.donaldy.hbase.demo;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
