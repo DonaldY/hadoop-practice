@@ -24,7 +24,7 @@ public class MyProcessor extends BaseRegionObserver {
             throws IOException {
 
         // 把自己需要执行的逻辑定义在此处,向t2表插入数据,数据具体是什么内容与Put一样
-        final HTable t2 = (HTable)ce.getEnvironment().getTable(TableName.valueOf("t2"));
+        final HTableInterface t2 = ce.getEnvironment().getTable(TableName.valueOf("t2"));
 
         // 解析t1表的插入对象put
         final Cell cell = put.get(Bytes.toBytes("info"), Bytes.toBytes("name")).get(0);
