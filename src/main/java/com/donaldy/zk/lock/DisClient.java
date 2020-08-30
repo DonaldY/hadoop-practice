@@ -21,7 +21,7 @@ class DisClient {
 
     private String beforeNodePath;
     private String currentNoePath;
-    private ZkClient zkClient = new ZkClient("linux121:2181,linux122:2181");
+    private ZkClient zkClient = new ZkClient("172.16.64.121:2181,172.16.64.122:2181");
     private CountDownLatch countDownLatch = null;
 
     DisClient() {
@@ -39,9 +39,9 @@ class DisClient {
 
         if (tryGetLock()) {
 
-            System.out.println(threadName + ":获取到了了锁");} else {
+            System.out.println(threadName + ":获取到了锁");} else {
 
-            System.out.println(threadName + ":获取锁失败,进入入等待状态");
+            System.out.println(threadName + ":获取锁失败,进入等待状态");
             waitForLock();
 
             // 递归获取锁
