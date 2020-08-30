@@ -42,7 +42,7 @@ public class Client {
             // 接收到通知, 说明节点发生了变化, client需要更新 infos 集合中的数据
             List<String> list = new ArrayList<>();
 
-            // 遍历更更新过后的所有节点信息
+            // 遍历更新过后的所有节点信息
             for (String path : children) {
                 final Object o = zkClient.readData("/servers/" + path);
                 list.add(String.valueOf(o));
@@ -50,7 +50,7 @@ public class Client {
 
             // 最新数据覆盖老数据
             infos = list;
-            System.out.println("--》接收到通知,最新服务器器信息为:" + infos);
+            System.out.println("--》接收到通知,最新服务器信息为:" + infos);
         });
     }
 

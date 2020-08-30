@@ -42,7 +42,9 @@ public class ServerMain {
 
         final ServerMain server = new ServerMain();
 
-        server.connectZK();server.registerServerInfo(args[0],args[1] );
+        server.connectZK();
+
+        server.registerServerInfo(args[0], args[1]);
 
         // 启动一个服务线程提供时间查询
         new TimeServer(Integer.parseInt(args[1])).start();
