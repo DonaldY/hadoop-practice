@@ -60,7 +60,8 @@ public class GetDataChange {
 class ZkStrSerializer implements ZkSerializer {
 
     //序列列化,数据--》byte[]
-    public byte[] serialize(Object o) throws ZkMarshallingError {return String.valueOf(o).getBytes();
+    public byte[] serialize(Object o) throws ZkMarshallingError {
+        return String.valueOf(o).getBytes();
     }
 
     //反序列列化,byte[]--->数据
