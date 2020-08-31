@@ -10,6 +10,7 @@ import org.junit.Test;
 
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * @author donald
@@ -93,6 +94,39 @@ public class HbaseClientDemo {
 
         // 准备delete对象
         final Delete delete = new Delete(Bytes.toBytes("110"));
+
+        // 执行删除
+        worker.delete(delete);
+
+        // 关闭table对象
+        worker.close();
+
+        System.out.println("删除数据成功!!");
+    }
+
+    /**
+     * 删除指定rowkey中，某一列(column)
+     *
+     * @throws IOException 异常
+     */
+    @Test
+    public void deleteData2() throws IOException {
+
+        final Table worker = conn.getTable(TableName.valueOf("relations"));
+
+        final Delete delete = new Delete(Bytes.toBytes("uid1"));
+
+        // 获取 rowkey
+        System.out.println(new String(delete.getRow()));
+
+        delete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes("uid2"));
+
+        // 获取 rowkey 中 第一个 列族
+        System.out.println(new String(delete.getFamilyCellMap().firstKey()));
+
+        // 获取 rowkey的列族中的 column
+        Cell cell = delete.getFamilyCellMap().get(Bytes.toBytes("friends")).get(0);
+        System.out.println(new String(cell.getQualifier()));
 
         // 执行删除
         worker.delete(delete);
