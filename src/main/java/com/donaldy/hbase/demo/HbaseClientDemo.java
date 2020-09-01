@@ -4,6 +4,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.hadoop.hbase.util.CollectionUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author donald
@@ -146,18 +148,28 @@ public class HbaseClientDemo {
 
         delete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes("uid2"));
 
-        String currUser = new String(delete.getRow());
+        List<Cell> cells = delete.getFamilyCellMap().get(Bytes.toBytes("friends"));
 
-        System.out.println("currUser : " + currUser);
+        if (CollectionUtils.isEmpty(cells)) {
+
+            worker.close();
+
+            return;
+        }
 
         // 获取 uid1 第一个 column
-        Cell cell = delete.getFamilyCellMap().get(Bytes.toBytes("friends")).get(0);
+        Cell cell = cells.get(0);
 
-        System.out.println(new String(cell.getQualifier()));
+        byte[] column = CellUtil.cloneQualifier(cell);
+        byte[] rowKey = CellUtil.cloneRow(cell);
+
+        System.out.println("column : " + new String(column));
+        System.out.println("rowKey : " + new String(rowKey));
 
         // 创建 uid2， 并设置需要删除的 column
-        Delete otherUserDelete = new Delete(cell.getQualifier());
-        otherUserDelete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes(currUser));
+        Delete otherUserDelete = new Delete(column);
+
+        otherUserDelete.addColumns(Bytes.toBytes("friends"), rowKey);
 
         worker.delete(otherUserDelete);
 
