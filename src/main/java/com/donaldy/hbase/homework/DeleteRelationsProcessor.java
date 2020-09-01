@@ -40,7 +40,7 @@ public class DeleteRelationsProcessor extends BaseRegionObserver {
         Delete otherUserDelete = new Delete(cell.getQualifier());
         otherUserDelete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes(currUser));
 
-        relations.delete(delete);
+        relations.delete(otherUserDelete);
 
         // 关闭 table 对象
         relations.close();

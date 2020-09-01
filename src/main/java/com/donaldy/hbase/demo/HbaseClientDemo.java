@@ -116,20 +116,50 @@ public class HbaseClientDemo {
 
         final Delete delete = new Delete(Bytes.toBytes("uid1"));
 
-        // 获取 rowkey
+        // 获取 rowkey uid1
         System.out.println(new String(delete.getRow()));
 
         delete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes("uid2"));
 
-        // 获取 rowkey 中 第一个 列族
+        // 获取 rowkey 中 第一个 列族 friends
         System.out.println(new String(delete.getFamilyCellMap().firstKey()));
 
-        // 获取 rowkey的列族中的 column
+        // 获取 rowkey的列族中的 column uid2
         Cell cell = delete.getFamilyCellMap().get(Bytes.toBytes("friends")).get(0);
         System.out.println(new String(cell.getQualifier()));
 
         // 执行删除
         worker.delete(delete);
+
+        // 关闭table对象
+        worker.close();
+
+        System.out.println("删除数据成功!!");
+    }
+
+    @Test
+    public void deleteData3() throws IOException {
+
+        final Table worker = conn.getTable(TableName.valueOf("relations"));
+
+        final Delete delete = new Delete(Bytes.toBytes("uid1"));
+
+        delete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes("uid2"));
+
+        String currUser = new String(delete.getRow());
+
+        System.out.println("currUser : " + currUser);
+
+        // 获取 uid1 第一个 column
+        Cell cell = delete.getFamilyCellMap().get(Bytes.toBytes("friends")).get(0);
+
+        System.out.println(new String(cell.getQualifier()));
+
+        // 创建 uid2， 并设置需要删除的 column
+        Delete otherUserDelete = new Delete(cell.getQualifier());
+        otherUserDelete.addColumns(Bytes.toBytes("friends"), Bytes.toBytes(currUser));
+
+        worker.delete(otherUserDelete);
 
         // 关闭table对象
         worker.close();
