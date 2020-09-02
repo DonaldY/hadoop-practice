@@ -11,6 +11,7 @@ import org.junit.Test;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,6 +56,30 @@ public class HbaseClientDemo {
         admin.createTable(teacher);
 
         System.out.println("teacher表创建成功!!");
+    }
+
+    @Test
+    public void putRelationData() throws IOException {
+
+        Table table = conn.getTable(TableName.valueOf("relations"));
+
+        List<Put> puts = new ArrayList<Put>();
+        // rowkey  user1
+        Put put = new Put(Bytes.toBytes("user1"));
+        put.addColumn(Bytes.toBytes("friends"),Bytes.toBytes("user2"),Bytes.toBytes("user2"));
+        put.addColumn(Bytes.toBytes("friends"),Bytes.toBytes("user3"),Bytes.toBytes("user3"));
+        put.addColumn(Bytes.toBytes("friends"),Bytes.toBytes("user4"),Bytes.toBytes("user4"));
+        puts.add(put);
+
+        // rowkey user2
+        Put put2 = new Put(Bytes.toBytes("user2"));
+        put.addColumn(Bytes.toBytes("friends"),Bytes.toBytes("user1"),Bytes.toBytes("user1"));
+        put.addColumn(Bytes.toBytes("friends"),Bytes.toBytes("user3"),Bytes.toBytes("user3"));
+        puts.add(put2);
+
+        table.put(puts);
+
+        table.close();
     }
 
     /**
