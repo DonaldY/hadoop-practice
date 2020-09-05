@@ -17,8 +17,14 @@
 - `demo`： 实验包
 - `homework`: 根据需求统计指标题
 
+
 `zk`包下：
 - `demo`： `API` 案例
 - `homework`： 动态切换数据库连接
 - `lock`： 实现分布式锁
 - `watch`： 监听
+
+`hbase`包下：
+- `demo`： 简单demo
+- `process`： 协处理器案例
+- `homework`： 删除协处理器
