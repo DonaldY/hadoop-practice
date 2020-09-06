@@ -24,7 +24,12 @@
 - `lock`： 实现分布式锁
 - `watch`： 监听
 
+
 `hbase`包下：
 - `demo`： 简单demo
 - `process`： 协处理器案例
 - `homework`： 删除协处理器
+
+
+`azkaban`包下：
+- `homework`： 用户指标分析，活跃度
