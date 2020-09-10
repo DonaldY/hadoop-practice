@@ -21,11 +21,19 @@ public class HiveDemo {
     // 加载驱动、创建连接
     @Before
     public void init() throws Exception {
-        String driverName = "org.apache.hive.jdbc.HiveDriver";
+        /*String driverName = "org.apache.hive.jdbc.HiveDriver";
         Class.forName(driverName);
         String url = "jdbc:hive2://172.16.64.123:10000/mydb";
         String user = "root";
-        String password = "12345678";
+        String password = "12345678";*/
+
+        String driverName = "org.apache.hive.jdbc.HiveDriver";
+        Class.forName(driverName);
+        String url = "jdbc:hive2://192.168.94.23:10000/default";
+        //String url = "jdbc:hive2://a208-dev-22:2181,a208-dev-23:2181,a208-dev-25:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2";
+        String user = "hive";
+        String password = "hive";
+
         conn = DriverManager.getConnection(url, user, password);
         stmt = conn.createStatement();
     }
@@ -133,6 +141,15 @@ public class HiveDemo {
     @Test
     public void dropTable() throws Exception {
         String sql = "drop table if exists emp";
+        System.out.println("Running: " + sql);
+        stmt.execute(sql);
+    }
+
+    @Test
+    public void test() throws SQLException {
+
+        String sql = "";
+
         System.out.println("Running: " + sql);
         stmt.execute(sql);
     }
