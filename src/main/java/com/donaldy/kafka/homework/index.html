@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+        <title>index</title>
+        <!-- jquery cdn, 可换其他 -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    </head>
+    <body>
+        <input id="click" type="button" value="点击" onclick="operate('click')" />
+        <input id="collect" type="button" value="收藏" onclick="operate('job_collect')" />
+        <input id="send" type="button" value="投简历" onclick="operate('cv_send')" />
+        <input id="upload" type="button" value="上传简历" onclick="operate('cv_upload')" />
+    </body>
+
+    <script>
+
+        function operate(action) {
+
+            var json = {'user_id': 'u_donald', 'act_time': current().toString(), 'action': action, 'job_code': 'donald'};
+
+            $.ajax({
+                url:"http://172.16.64.21:8880/kafka/log",
+                type:"POST" ,
+                crossDomain: true,
+                data: JSON.stringify(json),
+                // 下面这句话允许跨域的cookie访问
+                xhrFields: {
+                    withCredentials: true
+                },
+                success:function (data, status, xhr) {
+
+                    // console.log("操作成功：'" + action)
+                },
+                error:function (err) {
+
+                    // console.log(err.responseText);
+                }
+            });
+        };
+
+        function current() {
+            var d   = new Date(),
+                str = '';
+            str += d.getFullYear() + '-';
+            str += d.getMonth() + 1 + '-';
+            str += d.getDate() + ' ';
+            str += d.getHours() + ':';
+            str += d.getMinutes() + ':';
+            str += d.getSeconds();
+            return str;
+        }
+    </script>
+
+</html>
