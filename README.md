@@ -36,4 +36,7 @@
 
 `redis` 包下：
 - `demo`： 一些案例
-- `home`： 搭建三主三从，增加主节点和从节点
+- `homework`： 搭建三主三从，增加主节点和从节点
+
+`kafka` 包下：
+- `homework`： `HTML` -> `Nginx` -> `Kafka`
