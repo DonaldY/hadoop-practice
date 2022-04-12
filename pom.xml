@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.9.2</version>
+            <version>3.2.3</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-client -->
         <dependency>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.9.2</version>
+            <version>3.2.3</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-common -->
         <dependency>
